@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotations textSource="Parents_20170705T132137.txt">
+    <annotation>
+        <mention id="EHOST_Instance_792" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="732" end="738" />
+        <spannedText>wasn't</spannedText>
+        <creationDate>Wed Jan 12 12:23:50 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_792">
+        <mentionClass id="NegCue">wasn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_793" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1066" end="1072" />
+        <spannedText>wasn't</spannedText>
+        <creationDate>Wed Jan 12 12:24:12 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_793">
+        <mentionClass id="NegCue">wasn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_794" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1097" end="1102" />
+        <spannedText>can't</spannedText>
+        <creationDate>Wed Jan 12 12:24:31 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_794">
+        <mentionClass id="NegCue">can't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_795" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="130" end="138" />
+        <spannedText>not only</spannedText>
+        <creationDate>Wed Jan 12 12:33:02 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_795">
+        <mentionClass id="NegCue">not only</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_796" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1580" end="1589" />
+        <spannedText>uninsured</spannedText>
+        <creationDate>Wed Jan 12 12:36:53 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_796">
+        <mentionClass id="NegCue">uninsured</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_797" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="5707" end="5710" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 12:39:48 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_797">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_798" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="5226" end="5228" />
+        <spannedText>no</spannedText>
+        <creationDate>Wed Jan 12 12:40:01 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_798">
+        <mentionClass id="NegCue">no</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_799" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="6234" end="6242" />
+        <spannedText>not just</spannedText>
+        <creationDate>Wed Jan 12 12:40:19 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_799">
+        <mentionClass id="NegCue">not just</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_800" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="9555" end="9558" />
+        <spannedText>Not</spannedText>
+        <creationDate>Wed Jan 12 12:40:31 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_800">
+        <mentionClass id="NegCue">Not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_801" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="3282" end="3288" />
+        <spannedText>aren't</spannedText>
+        <creationDate>Wed Jan 12 12:41:20 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_801">
+        <mentionClass id="NegCue">aren't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_802" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="4476" end="4482" />
+        <spannedText>didn't</spannedText>
+        <creationDate>Wed Jan 12 12:41:27 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_802">
+        <mentionClass id="NegCue">didn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_803" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="7128" end="7136" />
+        <spannedText>should't</spannedText>
+        <creationDate>Wed Jan 12 12:41:37 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_803">
+        <mentionClass id="NegCue">should't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_804" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="7534" end="7541" />
+        <spannedText>doesn't</spannedText>
+        <creationDate>Wed Jan 12 12:41:40 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_804">
+        <mentionClass id="NegCue">doesn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_805" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="10871" end="10878" />
+        <spannedText>haven't</spannedText>
+        <creationDate>Wed Jan 12 12:41:50 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_805">
+        <mentionClass id="NegCue">haven't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_806" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="11413" end="11418" />
+        <spannedText>don't</spannedText>
+        <creationDate>Wed Jan 12 12:41:56 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_806">
+        <mentionClass id="NegCue">don't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_807" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="12666" end="12671" />
+        <spannedText>can't</spannedText>
+        <creationDate>Wed Jan 12 12:42:01 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_807">
+        <mentionClass id="NegCue">can't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_808" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="12463" end="12468" />
+        <spannedText>can't</spannedText>
+        <creationDate>Wed Jan 12 12:42:04 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_808">
+        <mentionClass id="NegCue">can't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_809" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="12584" end="12589" />
+        <spannedText>don't</spannedText>
+        <creationDate>Wed Jan 12 12:42:07 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_809">
+        <mentionClass id="NegCue">don't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_810" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="13036" end="13041" />
+        <spannedText>isn't</spannedText>
+        <creationDate>Wed Jan 12 12:42:13 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_810">
+        <mentionClass id="NegCue">isn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_811" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="13565" end="13570" />
+        <spannedText>don't</spannedText>
+        <creationDate>Wed Jan 12 12:42:15 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_811">
+        <mentionClass id="NegCue">don't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_812" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="13666" end="13671" />
+        <spannedText>don't</spannedText>
+        <creationDate>Wed Jan 12 12:42:19 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_812">
+        <mentionClass id="NegCue">don't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_813" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="14018" end="14023" />
+        <spannedText>don't</spannedText>
+        <creationDate>Wed Jan 12 12:42:23 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_813">
+        <mentionClass id="NegCue">don't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_814" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="14482" end="14489" />
+        <spannedText>doesn't</spannedText>
+        <creationDate>Wed Jan 12 12:42:30 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_814">
+        <mentionClass id="NegCue">doesn't</mentionClass>
+    </classMention>
+    <eHOST_Adjudication_Status version="1.0">
+        <Adjudication_Selected_Annotators version="1.0" />
+        <Adjudication_Selected_Classes version="1.0" />
+        <Adjudication_Others>
+            <CHECK_OVERLAPPED_SPANS>false</CHECK_OVERLAPPED_SPANS>
+            <CHECK_ATTRIBUTES>false</CHECK_ATTRIBUTES>
+            <CHECK_RELATIONSHIP>false</CHECK_RELATIONSHIP>
+            <CHECK_CLASS>false</CHECK_CLASS>
+            <CHECK_COMMENT>false</CHECK_COMMENT>
+        </Adjudication_Others>
+    </eHOST_Adjudication_Status>
+</annotations>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotations textSource="NPR-org_20170313T074645.txt">
+    <annotation>
+        <mention id="EHOST_Instance_1124" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="80" end="86" />
+        <spannedText>didn't</spannedText>
+        <creationDate>Wed Jan 12 14:20:29 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1124">
+        <mentionClass id="NegCue">didn't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1125" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1647" end="1650" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 14:20:42 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1125">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1126" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="2536" end="2539" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 14:20:48 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1126">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1127" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="3051" end="3053" />
+        <spannedText>no</spannedText>
+        <creationDate>Wed Jan 12 14:20:52 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1127">
+        <mentionClass id="NegCue">no</mentionClass>
+    </classMention>
+    <eHOST_Adjudication_Status version="1.0">
+        <Adjudication_Selected_Annotators version="1.0" />
+        <Adjudication_Selected_Classes version="1.0" />
+        <Adjudication_Others>
+            <CHECK_OVERLAPPED_SPANS>false</CHECK_OVERLAPPED_SPANS>
+            <CHECK_ATTRIBUTES>false</CHECK_ATTRIBUTES>
+            <CHECK_RELATIONSHIP>false</CHECK_RELATIONSHIP>
+            <CHECK_CLASS>false</CHECK_CLASS>
+            <CHECK_COMMENT>false</CHECK_COMMENT>
+        </Adjudication_Others>
+    </eHOST_Adjudication_Status>
+</annotations>
+

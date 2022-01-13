@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotations textSource="nhs-uk_20170705T182412.txt">
+    <annotation>
+        <mention id="EHOST_Instance_1073" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="2924" end="2932" />
+        <spannedText>harmless</spannedText>
+        <creationDate>Wed Jan 12 14:16:31 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1073">
+        <mentionClass id="NegCue">harmless</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1074" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1063" end="1069" />
+        <spannedText>unborn</spannedText>
+        <creationDate>Wed Jan 12 14:16:40 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1074">
+        <mentionClass id="NegCue">unborn</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1075" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="117" end="120" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 14:17:19 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1075">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1076" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1357" end="1367" />
+        <spannedText>non-immune</spannedText>
+        <creationDate>Wed Jan 12 14:17:24 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1076">
+        <mentionClass id="NegCue">non-immune</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1077" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1602" end="1612" />
+        <spannedText>non-immune</spannedText>
+        <creationDate>Wed Jan 12 14:17:31 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1077">
+        <mentionClass id="NegCue">non-immune</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1078" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="2360" end="2363" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 14:17:36 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1078">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_1079" />
+        <annotator id="eHOST_2010">Ravi</annotator>
+        <span start="1777" end="1780" />
+        <spannedText>not</spannedText>
+        <creationDate>Wed Jan 12 14:17:45 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_1079">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <eHOST_Adjudication_Status version="1.0">
+        <Adjudication_Selected_Annotators version="1.0" />
+        <Adjudication_Selected_Classes version="1.0" />
+        <Adjudication_Others>
+            <CHECK_OVERLAPPED_SPANS>false</CHECK_OVERLAPPED_SPANS>
+            <CHECK_ATTRIBUTES>false</CHECK_ATTRIBUTES>
+            <CHECK_RELATIONSHIP>false</CHECK_RELATIONSHIP>
+            <CHECK_CLASS>false</CHECK_CLASS>
+            <CHECK_COMMENT>false</CHECK_COMMENT>
+        </Adjudication_Others>
+    </eHOST_Adjudication_Status>
+</annotations>
+
