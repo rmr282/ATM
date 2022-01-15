@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotations textSource="NY-Daily-News_20160704T092017.txt">
+    <annotation>
+        <mention id="EHOST_Instance_9" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="338" end="341" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:49:05 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_9">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_10" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="441" end="445" />
+        <spannedText>non-</spannedText>
+        <creationDate>Thu Jan 13 18:49:32 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_10">
+        <mentionClass id="NegCue">non-</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_11" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="836" end="838" />
+        <spannedText>un</spannedText>
+        <creationDate>Thu Jan 13 18:50:08 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_11">
+        <mentionClass id="NegCue">un</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_12" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="1906" end="1909" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:51:25 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_12">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_13" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="2985" end="2988" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:54:14 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_13">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_14" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="3213" end="3216" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:54:51 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_14">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_15" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="3445" end="3448" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:55:19 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_15">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_16" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="2355" end="2357" />
+        <spannedText>no</spannedText>
+        <creationDate>Thu Jan 13 19:40:01 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_16">
+        <mentionClass id="NegCue">no</mentionClass>
+    </classMention>
+    <eHOST_Adjudication_Status version="1.0">
+        <Adjudication_Selected_Annotators version="1.0" />
+        <Adjudication_Selected_Classes version="1.0" />
+        <Adjudication_Others>
+            <CHECK_OVERLAPPED_SPANS>false</CHECK_OVERLAPPED_SPANS>
+            <CHECK_ATTRIBUTES>false</CHECK_ATTRIBUTES>
+            <CHECK_RELATIONSHIP>false</CHECK_RELATIONSHIP>
+            <CHECK_CLASS>false</CHECK_CLASS>
+            <CHECK_COMMENT>false</CHECK_COMMENT>
+        </Adjudication_Others>
+    </eHOST_Adjudication_Status>
+</annotations>
+

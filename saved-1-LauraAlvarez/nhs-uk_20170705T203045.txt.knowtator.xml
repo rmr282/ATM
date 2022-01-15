@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotations textSource="nhs-uk_20170705T203045.txt">
+    <annotation>
+        <mention id="EHOST_Instance_47" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="190" end="192" />
+        <spannedText>Un</spannedText>
+        <creationDate>Thu Jan 13 18:04:04 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_47">
+        <mentionClass id="NegCue">Un</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_48" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="386" end="388" />
+        <spannedText>un</spannedText>
+        <creationDate>Thu Jan 13 18:04:25 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_48">
+        <mentionClass id="NegCue">un</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_49" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="518" end="520" />
+        <spannedText>un</spannedText>
+        <creationDate>Thu Jan 13 18:04:50 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_49">
+        <mentionClass id="NegCue">un</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_50" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="1225" end="1228" />
+        <spannedText>not</spannedText>
+        <creationDate>Thu Jan 13 18:05:43 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_50">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_51" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="2092" end="2095" />
+        <spannedText>not</spannedText>
+        <creationDate>Thu Jan 13 18:06:21 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_51">
+        <mentionClass id="NegCue">not</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_52" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="2555" end="2557" />
+        <spannedText>no</spannedText>
+        <creationDate>Thu Jan 13 18:06:57 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_52">
+        <mentionClass id="NegCue">no</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_53" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="3185" end="3188" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:07:44 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_53">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <annotation>
+        <mention id="EHOST_Instance_54" />
+        <annotator id="01">Laura Alvarez</annotator>
+        <span start="3778" end="3781" />
+        <spannedText>n't</spannedText>
+        <creationDate>Thu Jan 13 18:08:24 CET 2022</creationDate>
+    </annotation>
+    <classMention id="EHOST_Instance_54">
+        <mentionClass id="NegCue">n't</mentionClass>
+    </classMention>
+    <eHOST_Adjudication_Status version="1.0">
+        <Adjudication_Selected_Annotators version="1.0" />
+        <Adjudication_Selected_Classes version="1.0" />
+        <Adjudication_Others>
+            <CHECK_OVERLAPPED_SPANS>false</CHECK_OVERLAPPED_SPANS>
+            <CHECK_ATTRIBUTES>false</CHECK_ATTRIBUTES>
+            <CHECK_RELATIONSHIP>false</CHECK_RELATIONSHIP>
+            <CHECK_CLASS>false</CHECK_CLASS>
+            <CHECK_COMMENT>false</CHECK_COMMENT>
+        </Adjudication_Others>
+    </eHOST_Adjudication_Status>
+</annotations>
+
