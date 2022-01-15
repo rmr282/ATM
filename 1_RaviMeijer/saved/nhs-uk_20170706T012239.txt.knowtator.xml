@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <annotations textSource="nhs-uk_20170706T012239.txt">
     <annotation>
-        <mention id="EHOST_Instance_1128" />
+        <mention id="EHOST_Instance_1402" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="23" end="28" />
-        <spannedText>isn't</spannedText>
-        <creationDate>Wed Jan 12 14:07:05 CET 2022</creationDate>
+        <span start="25" end="28" />
+        <spannedText>n't</spannedText>
+        <creationDate>Sat Jan 15 10:07:42 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1128">
-        <mentionClass id="NegCue">isn't</mentionClass>
+    <classMention id="EHOST_Instance_1402">
+        <mentionClass id="NegCue">n't</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1129" />
+        <mention id="EHOST_Instance_1403" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="503" end="510" />
-        <spannedText>haven't</spannedText>
-        <creationDate>Wed Jan 12 14:07:51 CET 2022</creationDate>
+        <span start="507" end="510" />
+        <spannedText>n't</spannedText>
+        <creationDate>Sat Jan 15 10:07:52 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1129">
-        <mentionClass id="NegCue">haven't</mentionClass>
+    <classMention id="EHOST_Instance_1403">
+        <mentionClass id="NegCue">n't</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1130" />
+        <mention id="EHOST_Instance_1404" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="832" end="838" />
-        <spannedText>hasn't</spannedText>
-        <creationDate>Wed Jan 12 14:07:53 CET 2022</creationDate>
+        <span start="835" end="838" />
+        <spannedText>n't</spannedText>
+        <creationDate>Sat Jan 15 10:07:55 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1130">
-        <mentionClass id="NegCue">hasn't</mentionClass>
+    <classMention id="EHOST_Instance_1404">
+        <mentionClass id="NegCue">n't</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1131" />
+        <mention id="EHOST_Instance_1405" />
         <annotator id="eHOST_2010">Ravi</annotator>
         <span start="1258" end="1261" />
         <spannedText>not</spannedText>
         <creationDate>Wed Jan 12 14:08:01 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1131">
+    <classMention id="EHOST_Instance_1405">
         <mentionClass id="NegCue">not</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1132" />
+        <mention id="EHOST_Instance_1406" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="403" end="413" />
-        <spannedText>non-immune</spannedText>
-        <creationDate>Wed Jan 12 14:09:10 CET 2022</creationDate>
+        <span start="403" end="406" />
+        <spannedText>non</spannedText>
+        <creationDate>Sat Jan 15 10:07:48 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1132">
-        <mentionClass id="NegCue">non-immune</mentionClass>
+    <classMention id="EHOST_Instance_1406">
+        <mentionClass id="NegCue">non</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1133" />
+        <mention id="EHOST_Instance_1407" />
         <annotator id="eHOST_2010">Ravi</annotator>
         <span start="1532" end="1535" />
         <spannedText>not</spannedText>
         <creationDate>Wed Jan 12 14:11:32 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1133">
+    <classMention id="EHOST_Instance_1407">
         <mentionClass id="NegCue">not</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1134" />
+        <mention id="EHOST_Instance_1408" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="1746" end="1752" />
-        <spannedText>unsure</spannedText>
-        <creationDate>Wed Jan 12 14:12:06 CET 2022</creationDate>
+        <span start="1746" end="1748" />
+        <spannedText>un</spannedText>
+        <creationDate>Sat Jan 15 10:07:59 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1134">
-        <mentionClass id="NegCue">unsure</mentionClass>
+    <classMention id="EHOST_Instance_1408">
+        <mentionClass id="NegCue">un</mentionClass>
     </classMention>
     <eHOST_Adjudication_Status version="1.0">
         <Adjudication_Selected_Annotators version="1.0" />

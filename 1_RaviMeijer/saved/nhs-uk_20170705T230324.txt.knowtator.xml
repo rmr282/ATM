@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <annotations textSource="nhs-uk_20170705T230324.txt">
     <annotation>
-        <mention id="EHOST_Instance_1087" />
+        <mention id="EHOST_Instance_1361" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="24" end="29" />
-        <spannedText>isn't</spannedText>
-        <creationDate>Wed Jan 12 14:05:58 CET 2022</creationDate>
+        <span start="26" end="29" />
+        <spannedText>n't</spannedText>
+        <creationDate>Sat Jan 15 10:03:58 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1087">
-        <mentionClass id="NegCue">isn't</mentionClass>
+    <classMention id="EHOST_Instance_1361">
+        <mentionClass id="NegCue">n't</mentionClass>
     </classMention>
     <annotation>
-        <mention id="EHOST_Instance_1088" />
+        <mention id="EHOST_Instance_1362" />
         <annotator id="eHOST_2010">Ravi</annotator>
-        <span start="2913" end="2919" />
-        <spannedText>unborn</spannedText>
-        <creationDate>Wed Jan 12 14:14:35 CET 2022</creationDate>
+        <span start="2913" end="2915" />
+        <spannedText>un</spannedText>
+        <creationDate>Sat Jan 15 10:04:02 CET 2022</creationDate>
     </annotation>
-    <classMention id="EHOST_Instance_1088">
-        <mentionClass id="NegCue">unborn</mentionClass>
+    <classMention id="EHOST_Instance_1362">
+        <mentionClass id="NegCue">un</mentionClass>
     </classMention>
     <eHOST_Adjudication_Status version="1.0">
         <Adjudication_Selected_Annotators version="1.0" />
