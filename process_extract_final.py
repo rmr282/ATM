@@ -2,36 +2,33 @@ import os
 import copy
 from collections import Counter
 from collections import defaultdict
+
 import regex as re
 import string
 import pandas as pd 
 import numpy as np
 
 import spacy
+from spacy.tokenizer import Tokenizer
+from spacy.lang.en import English
 
 import nltk
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
+#TODO: uncomment when running for first time
+# nltk.download('words') 
 
-from spacy.tokenizer import Tokenizer
-from spacy.lang.en import English
-from stanza.pipeline.processor import ProcessorVariant, register_processor_variant
-
+# from stanza.pipeline.processor import ProcessorVariant, register_processor_variant
 
 
 # --- DEFINITIONS -------------------------------------------------------------------------------------
 
-#TODO: make this more organized
+DATA_DIR = os.getcwd() + '\\SEM-2012-SharedTask-CD-SCO-simple.v2\\'
 
-# nltk.download('words')
 english_vocab = set(w.lower() for w in nltk.corpus.words.words())
-
 nlp = spacy.load("en_core_web_sm")
-
-SEM_LOC = os.getcwd() + '\\SEM-2012-SharedTask-CD-SCO-simple.v2\\'
-
 
 # define punctuations
 punctuations = string.punctuation
@@ -40,23 +37,25 @@ punctuations = punctuations.replace('`', '')
 
 # define stopwords
 all_stopwords = stopwords.words('english')
-adjusted_stopwords = [e for e in all_stopwords if e not in ('ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't",
-'don', "don't", 'should', 't', 'can', 'no', 'nor', 'not', 'only', 'do', 'does', 'are', 'was', 'were', 'have', 'has', 'had', 'against', 'by', 'the', 'for')]
-
-
+adjusted_stopwords = [e for e in all_stopwords if e not in ('ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn', 
+"hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 
+'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't", 'don', "don't", 'should', 't', 'can', 'no', 'nor', 
+'not', 'only', 'do', 'does', 'are', 'was', 'were', 'have', 'has', 'had', 'against', 'by', 'the', 'for')]
 
 
 # --- DATA EXPLORATION -----------------------------------------------------------------------------------
 
 #TODO: graph
 
-def exploration(df_training): 
-    print(df_training.count())
-    print(df_training.head(10))
-    print(df_training.nunique())
-    print(df_training['label'].value_counts())
-    print(df_training['token'].value_counts())
-    print(df_training[df_training['label'] == 'B-NEG']['token'].value_counts())
+def exploration(data): 
+    print('Unique values per column')
+    print(data.nunique())
+    print('Number of instance labels')
+    print(data['label'].value_counts())
+    print('Most frequent tokens')
+    print(data['token'].value_counts().head(10))
+    print('Most frequent negation cues')
+    print(data[data['label'] == 'B-NEG']['token'].value_counts().head(10))
 
 
 def get_statistics_ravi(data):
@@ -131,25 +130,20 @@ def get_statistics_ravi(data):
     avg_word_length = total_length / num_words
     print('Average word length', avg_word_length)
 
-
     pos_tokencounts_dict
-
-
-    return
 
 
 
 # --- PREPROCESSING ---------------------------------------------------------------------------------------
 
-def remove_punctuations(text):
+def remove_punctuations(text):   
     for punctuation in punctuations:
         text = text.replace(punctuation, '')
     
     return text
 
 
-def preproccessing(data):
-
+def preprocessing(data):
     # apply lowering, removing punctuations and deleting stopwords 
     data['token_lower'] = data['token'].str.lower()
     data['token_no_punct'] = data['token_lower'].apply(remove_punctuations)
@@ -159,6 +153,8 @@ def preproccessing(data):
     data['token_no_stop'].replace('', np.nan, inplace=True)
     data.dropna(subset=['token_no_stop'], inplace=True)
 
+    data.reset_index(drop=True, inplace=True)
+
     return data
 
 
@@ -167,34 +163,34 @@ def preproccessing(data):
 
 def feature_extraction(data):
 
-
-
+    data = nlp_features(data)
+    data = regex_features(data)
 
     return data
 
 
-def features_ravi(data):
+def nlp_features(data):
 
     spacy_pipe = nlp.pipe(data["token_lower"].values, disable=["ner", "parser"])
+
     # get lemma, pos, previous lemma, previous pos, next lemma, next pos 
     features_gen = ((doc[0].lemma_, doc[0].pos_) for doc in spacy_pipe)
     data["lemma"], data["pos"] = zip(*features_gen)
-    data["prev_Lemma"] = data["lemma"].shift(periods=1)
-    data["next_Lemma"] = data["lemma"].shift(periods=-1)
+    data["prev_lemma"] = data["lemma"].shift(periods=1)
+    data["next_lemma"] = data["lemma"].shift(periods=-1)
     data["prev_pos"] = data["pos"].shift(periods=1)
     data["next_pos"] = data["pos"].shift(periods=-1)
 
     # trying some things out with stemmers 
     snow = SnowballStemmer(language='english')
-    data["snowballStemmer"] = data.apply(lambda row: snow.stem(row["token_lower"]), axis=1)
+    data["snowball_stemmer"] = data.apply(lambda row: snow.stem(row["token_lower"]), axis=1)
     port = PorterStemmer()
-    data['PorterStemmer'] = data.apply(lambda row: port.stem(row["token_lower"]), axis=1)
-
+    data['Porter_stemmer'] = data.apply(lambda row: port.stem(row["token_lower"]), axis=1)
 
     return data
 
 
-def get_regex_features(df_training):
+def regex_features(data):
 
     prefixes = ['in', 'un', 'non', 'de', 'dis', 'a', 'anti', 'im', 'il', 'ir']
     postfixes = ('less') # also use for infix
@@ -209,9 +205,9 @@ def get_regex_features(df_training):
     multi_word = [] # by no means, not for the world, on the contrary, nothing at all, rather than
 
 
-    for index, row in enumerate(df_training.values): 
-        
-        token = row[3]
+    for index, row in enumerate(data.values): 
+
+        token = row[5] # matches 'token_lower' column
         
         prefix_match = re.search(r'^(?=('+'|'.join(prefixes)+r'))', token) #token.startswith(prefixes)
         postfix_match = re.search('less$', token) #token.endswith(postfixes)
@@ -260,34 +256,40 @@ def get_regex_features(df_training):
         base_tokens.append(base_token)
         bases_in_dict.append(base_in_dict)
         
+    data['has_prefix'] = has_prefix
+    data['has_postfix'] = has_postfix
+    data['has_infix'] = has_infix
+    data['base'] = base_tokens
+    data['base_in_dictionary'] = bases_in_dict
+    data['has_apostrophe'] = has_apostrophe
 
-    df_training['has_prefix'] = has_prefix
-    df_training['has_postfix'] = has_postfix
-    df_training['has_infix'] = has_infix
-    df_training['base'] = base_tokens
-    df_training['base_in_dictionary'] = bases_in_dict
-    df_training['has_apostrophe'] = has_apostrophe
-
-
-    return df_training
+    return data
 
 
 # --- MAIN --------------------------------------------------------------------------------------------------
 
 def main():
 
-    data = pd.read_csv(SEM_LOC + 'SEM-2012-SharedTask-CD-SCO-training-simple.v2.txt', sep="\t", header=None)
+    data = pd.read_csv(DATA_DIR + 'SEM-2012-SharedTask-CD-SCO-training-simple.v2.txt', sep="\t", header=None)
     data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']
+    # exploration(data)
+    # get_statistics_ravi(data)
+    preprocessed_data = preprocessing(data)
+    featurized_data = feature_extraction(preprocessed_data)
+    data.to_csv('SEM2012_training_data_with_features.csv', index=False)
 
+    # print('\nPREPROCESSED DATAFRAME\n')
+    # print(preprocessed_data)
+    # print('\nFEATURIZED DATAFRAME\n')
+    # print(featurized_data)
+    # print(featurized_data.columns)
 
-    df_training = get
-
-
-    print(df_training[df_training['label'] == 'I-NEG'])
-
-    print(df_training[df_training['has_postfix'] == True].head(30))
-
-    # print(df_training[(df_training['sentence_id'] == 200) & (df_training['annotater'] == 'baskervilles09')].head(30))
+    validation_data = pd.read_csv(DATA_DIR + 'SEM-2012-SharedTask-CD-SCO-dev-simple.v2.txt', sep="\t", header=None)
+    validation_data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']
+    # get_statistics_ravi(validation_data)
+    validation_data = preprocessing(validation_data)
+    validation_data = feature_extraction(validation_data)
+    validation_data.to_csv('SEM2012_validation_data_with_features.csv', index=False)
 
 
 if __name__ == '__main__':
