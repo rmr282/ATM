@@ -14,13 +14,18 @@ from spacy.lang.en import English
 
 import nltk
 from nltk import word_tokenize
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords, wordnet
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk.parse import CoreNLPParser
+from nltk.parse.corenlp import CoreNLPDependencyParser
+
 #TODO: uncomment when running for first time
 # nltk.download('words') 
 
 # from stanza.pipeline.processor import ProcessorVariant, register_processor_variant
+
 
 
 # --- DEFINITIONS -------------------------------------------------------------------------------------
@@ -41,6 +46,8 @@ adjusted_stopwords = [e for e in all_stopwords if e not in ('ain', 'aren', "aren
 "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 
 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't", 'don', "don't", 'should', 't', 'can', 'no', 'nor', 
 'not', 'only', 'do', 'does', 'are', 'was', 'were', 'have', 'has', 'had', 'against', 'by', 'the', 'for')]
+
+
 
 
 # --- DATA EXPLORATION -----------------------------------------------------------------------------------
@@ -164,6 +171,10 @@ def preprocessing(data):
 def feature_extraction(data):
 
     data = nlp_features(data)
+    data = nlp_features_2(data)
+
+    data
+
     data = regex_features(data)
 
     return data
@@ -186,6 +197,102 @@ def nlp_features(data):
     data["snowball_stemmer"] = data.apply(lambda row: snow.stem(row["token_lower"]), axis=1)
     port = PorterStemmer()
     data['Porter_stemmer'] = data.apply(lambda row: port.stem(row["token_lower"]), axis=1)
+
+    return data
+
+
+# Function to get the wordnet POS, it fixes compatibility issues with the nltk POS
+def get_wordnet_pos(treebank_tag):
+
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return None
+
+
+def nlp_features_2(data):
+
+    # How to set up depencency parser: https://github.com/nltk/nltk/wiki/Stanford-CoreNLP-API-in-NLTK
+    # Command line instruction to start server
+        #java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer \
+        # -preload tokenize,ssplit,pos,lemma,ner,parse,depparse \
+        # -status_port 9000 -port 9000 -timeout 15000 & 
+
+    dep_parser = CoreNLPDependencyParser(url='http://localhost:9000')
+    lemmatizer = WordNetLemmatizer()
+
+    column_values = data[['annotator']].values.ravel()
+    annotator_ids = pd.unique(column_values)
+
+    pos_tags = []
+    heads = []
+    dep_rels = []
+    lemmas = []
+
+    for annotator in annotator_ids:
+        annotator_data = data[data['annotator'] == annotator]
+        column_values = annotator_data[['sentence_id']].values.ravel()
+        sentence_ids = pd.unique(column_values)
+
+        for sent_id in sentence_ids:
+            sentence = annotator_data.loc[annotator_data['sentence_id'] == sent_id, 'token']
+            parse, = dep_parser.parse(sentence)
+            conll = parse.to_conll(4) # get the conll format
+            df = pd.DataFrame([x.split('\t') for x in conll.split('\n')[:-1]], columns=['word', 'pos', 'head', 'deprel'])
+            df['head'] = df['head'].astype(int)
+            head = list(df['head'].values)
+            dep_rel = list(df['deprel'].values)
+
+            for p, h, d in zip(nltk.pos_tag(sentence), head, dep_rel):
+                pos_tags.append(p[1])
+                heads.append(h)
+                dep_rels.append(d)
+                if get_wordnet_pos(p[1]): 
+                    lemma = lemmatizer.lemmatize(p[0], pos=get_wordnet_pos(p[1]))
+                else: 
+                    lemma = lemmatizer.lemmatize(p[0])
+                lemmas.append(lemma)
+                    
+                            
+    data['pos_tag'] = pos_tags
+    data['head'] = heads
+    data['dependency'] = dep_rels
+    data['lemma'] = lemmas
+    data['is_part_of_negation'] = 0
+    
+    return data
+
+
+def find_sub_list(sl,l):
+    results=[]
+    sll=len(sl)
+    for ind in (i for i,e in enumerate(l) if e==sl[0]):
+        if l[ind:ind+sll]==sl:
+            results.append((ind,ind+sll-1))
+
+    return results
+
+
+def part_of_negation(data):
+
+    multi_neg_list = ['by no means', 'on the contrary', 'not for the world', 'nothing at all', 'rather than', 'no more', 'no longer']
+    data.token = data.token.str.lower()
+    tokens = list(data.token.values)
+
+    for exp in multi_neg_list:
+        exp = exp.split(' ')
+        index = find_sub_list(exp, tokens)
+        for i in index:
+            data.loc[data.index[i[0]], 'is_part_of_negation'] = 1
+            data.loc[data.index[i[1]], 'is_part_of_negation'] = 1
+            if i[1] - i[0] >1:
+                data.loc[data.index[i[1]-1], 'is_part_of_negation'] = 1
 
     return data
 
