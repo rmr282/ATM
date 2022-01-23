@@ -11,8 +11,8 @@ The Github was created.
 Every member annotated ten documents independently on negation cues. 
 The “saved” directories from the eHost annotation task were stored for every group member under the name “saved- groupNumber-annotatorName”.
 
-**Assignment 3**
-To be announced. 
+**Assignment 3** 
+During this phase the preprocessing and feature extraction file was created. This can be run with running the process_extract_final.py file. 
 
 **Assignment 4**
 To be announced.
