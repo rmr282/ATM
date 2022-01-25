@@ -180,7 +180,7 @@ def feature_extraction(data):
 
 def nlp_features(data):
 
-    spacy_pipe = nlp.pipe(data["token_lower"].values,
+    spacy_pipe = nlp.pipe(data["token_no_stop"].values,
                           disable=["ner", "parser"])
 
     # get lemma, pos, previous lemma, previous pos, next lemma, next pos
@@ -225,7 +225,7 @@ def nlp_features_2(data):
 
         for sent_id in sentence_ids:
             sentence = annotator_data.loc[annotator_data['sentence_id']
-                                          == sent_id, 'token_no_punct']
+                                          == sent_id, 'token_no_stop']
 
             doc = nlp(list(sentence))
             doc._.pandas['head'] = doc._.pandas['head'].astype(
@@ -292,7 +292,7 @@ def regex_features(data):
 
     for index, row in enumerate(data.values):
 
-        token = row[5]  # matches 'token_lower' column
+        token = row[7]  # matches 'token_no_stop' column
 
         # token.startswith(prefixes)
         prefix_match = re.search(r'^(?=('+'|'.join(prefixes)+r'))', token)
