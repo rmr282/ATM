@@ -17,17 +17,7 @@ new_cols = [col for col in df_train.columns if col != 'label'] + ['label']
 df_train = df_train[new_cols]
 df_val = df_val[new_cols]
 
-# annotator,sentence_id,token_id,token,label,token_lower,token_no_punct,token_no_stop,
-# lemma,pos,prev_lemma,next_lemma,prev_pos,next_pos,snowball_stemmer,Porter_stemmer,
-# head,dependency,is_part_of_negation,has_prefix,has_postfix,has_infix,base,base_in_dictionary,
-# has_apostrophe
-
 # true/false to 1/0
-
-# df_train[["is_part_of_negation", "has_prefix", "has_postfix", "has_infix", "base_in_dictionary", "has_apostrophe"]] = df_train[["is_part_of_negation", "has_prefix", "has_postfix", "has_infix", "base_in_dictionary", "has_apostrophe"]].astype(int)
-
-
-
 df_train["is_part_of_negation"] = df_train["is_part_of_negation"].astype(int)
 df_train["has_prefix"] = df_train["has_prefix"].astype(int)
 df_train["has_postfix"] = df_train["has_postfix"].astype(int)
@@ -35,17 +25,17 @@ df_train["has_infix"] = df_train["has_infix"].astype(int)
 df_train["base_in_dictionary"] = df_train["base_in_dictionary"].astype(int)
 df_train["has_apostrophe"] = df_train["has_apostrophe"].astype(int)
 
-print(df_train)
-
+# vectorize strings
 dict_vec = DictVectorizer()
-print(df_train[['token_no_stop']].to_dict('records'))
 dict_vec.fit(df_train[['token_no_stop']].to_dict('records'))
 X_train = dict_vec.transform(df_train[['token_no_stop']].to_dict('records'))
 X_val = dict_vec.transform(df_val[['token_no_stop']].to_dict('records'))
 
+print(X_train)
 
-count_vec = CountVectorizer()
-count_vec.fit(df_train['token_no_stop'])
+
+# count_vec = CountVectorizer()
+# count_vec.fit(df_train['token_no_stop'])
 # X_train = count_vec.transform(df_train['token_no_stop'])
 # X_val = count_vec.transform(df_val['token_no_stop'])
 
@@ -58,10 +48,7 @@ y_train = df_train.iloc[:, -1].to_numpy()
 y_val = df_val.iloc[:, -1].to_numpy()
 
 
-
-
-
-
+# naive bayes classification (multinomial and complement)
 mnb = MultinomialNB()
 mnb.fit(X_train, y_train)
 predictions = mnb.predict(X_val)
@@ -71,17 +58,18 @@ predictions = mnb.predict(X_val)
 # predictions = cnb.predict(X_val)
 
 
+# visualisation
 df_val['prediction'] = predictions
-
 clsf_report = pd.DataFrame(classification_report(y_true = df_val['label'], y_pred = df_val['prediction'], output_dict=True)).transpose()
 print(clsf_report)
-
-
-
 
 confusion_matrix = pd.crosstab(df_val['label'], df_val['prediction'], rownames=['Actual'], colnames=['Predicted'])
 sn.heatmap(confusion_matrix, annot=True, cmap='Blues')
 plt.show()
+
+
+
+
 
 
 # # https://www.analyticsvidhya.com/blog/2018/04/a-comprehensive-guide-to-understand-and-implement-text-classification-in-python/
