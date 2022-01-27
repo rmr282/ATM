@@ -1,3 +1,5 @@
+from distutils.errors import DistutilsPlatformError
+from doctest import DocFileSuite
 import numpy as np
 import pandas as pd
 import seaborn as sn
@@ -5,84 +7,117 @@ import matplotlib.pyplot as plt
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB, ComplementNB
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, plot_confusion_matrix
+from sympy import Complement
+
+
+PREDICTORS = ['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+            'porter_stemmer','head','dependency','is_part_of_negation','has_prefix','has_postfix','has_infix',
+            'base_in_dictionary','has_apostrophe']
+
+
+def format_data(df):
+
+    # prediction label to last column
+    new_cols = [col for col in df.columns if col != 'label'] + ['label']
+    df = df[new_cols]
+
+    # fill NaN with 'no_label'
+    df = df.fillna('no_label')
+
+    # true/false to 1/0
+    df["is_part_of_negation"] = df["is_part_of_negation"].astype(int)
+    df["has_prefix"] = df["has_prefix"].astype(int)
+    df["has_postfix"] = df["has_postfix"].astype(int)
+    df["has_infix"] = df["has_infix"].astype(int)
+    df["base_in_dictionary"] = df["base_in_dictionary"].astype(int)
+    df["has_apostrophe"] = df["has_apostrophe"].astype(int)
+
+    # print(df.columns)
+    # print(df.isna().any())
+
+    return df
+
+
+def vectorize_split_data(df_train, df_val):
+
+    dict_vec = DictVectorizer(sparse=False)
+
+    X_train = dict_vec.fit_transform(df_train[PREDICTORS].to_dict('records'))
+    y_train = df_train.iloc[:, -1].to_numpy()
+
+    X_val = dict_vec.transform(df_val[PREDICTORS].to_dict('records'))
+    y_val = df_val.iloc[:, -1].to_numpy()
+
+    print(type(X_train))
+    print(type(y_train))
+
+    # print(len(x))
+    # print(y.shape())
+
+    return X_train, y_train, X_val, y_val
+
+
+def run_naive_bayes(X_train, y_train, X_val, y_val):
+
+    # multinomial nb
+    clf = MultinomialNB()
+    # clf = ComplementNB()
+    print('Fitting the model...')
+    clf.fit(X_train, y_train)
+    print('Predicting...')
+    predictions = clf.predict(X_val)
+
+    return clf, predictions
+
+
+def evaluation(clf, X_val, y_val, predictions):
+
+    clf_report = pd.DataFrame(classification_report(y_true = y_val, y_pred = predictions, output_dict=True)).transpose()
+    print(clf_report)
+
+    plot_confusion_matrix(clf, X_val, y_val)  
+    plt.show()
+
+    # confusion_matrix = pd.crosstab(df_val['label'], df_val['prediction'], rownames=['Actual'], colnames=['Predicted'])
+    # sn.heatmap(confusion_matrix, annot=True, cmap='Blues')
+    # plt.show()
+
+    return
+
+
+def main():
+
+    df_train = pd.read_csv('SEM2012_training_data_with_features.csv')
+    df_val = pd.read_csv('SEM2012_validation_data_with_features.csv')
+
+    df_train = format_data(df_train)
+    df_val = format_data(df_val)
+
+    X_train, y_train, X_val, y_val = vectorize_split_data(df_train, df_val)
+
+    clf, predictions = run_naive_bayes(X_train, y_train, X_val, y_val)
+    df_val['prediction'] = predictions
+
+    evaluation(clf, X_val, y_val, predictions)
+
+
+if __name__ == '__main__':
+    main()
 
 
 
-df_train = pd.read_csv('SEM2012_training_data_with_features.csv')
-df_val = pd.read_csv('SEM2012_validation_data_with_features.csv')
-
-# prediction label to last column
-new_cols = [col for col in df_train.columns if col != 'label'] + ['label']
-df_train = df_train[new_cols]
-df_val = df_val[new_cols]
-
-# true/false to 1/0
-df_train["is_part_of_negation"] = df_train["is_part_of_negation"].astype(int)
-df_train["has_prefix"] = df_train["has_prefix"].astype(int)
-df_train["has_postfix"] = df_train["has_postfix"].astype(int)
-df_train["has_infix"] = df_train["has_infix"].astype(int)
-df_train["base_in_dictionary"] = df_train["base_in_dictionary"].astype(int)
-df_train["has_apostrophe"] = df_train["has_apostrophe"].astype(int)
-
-print(df_train.columns)
-print(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
-                 'porter_stemmer','head','dependency']].isna().any())
-
-
-# vectorize strings
-dict_vec = DictVectorizer(sparse=False)
-
-# dict_vec.fit(df_train[['token_no_stop']].to_dict('records'))
-# X_train = dict_vec.transform(df_train[['token_no_stop']].to_dict('records'))
-# X_val = dict_vec.transform(df_val[['token_no_stop']].to_dict('records'))
-
-# 'token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
-#                 'porter_stemmer','head','dependency','is_part_of_negation','has_prefix','has_postfix','has_infix',
-#                 'base_in_dictionary','has_apostrophe'
-
-dict_vec.fit(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
-                 'porter_stemmer','head','dependency']].to_dict('records'))
-X_train = dict_vec.transform(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
-                 'porter_stemmer','head','dependency']].to_dict('records'))
-X_val = dict_vec.transform(df_val[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
-                 'porter_stemmer','head','dependency']].to_dict('records'))
-
-# print(X_train)
-
-
-# count_vec = CountVectorizer()
-# count_vec.fit(df_train['token_no_stop'])
-# X_train = count_vec.transform(df_train['token_no_stop'])
-# X_val = count_vec.transform(df_val['token_no_stop'])
 
 
 
-# split data in X and y
-# X_train = df_train.iloc[:, np.r_[18:21,23:24]].to_numpy()
-y_train = df_train.iloc[:, -1].to_numpy()
-# X_val = df_val.iloc[:, np.r_[18:21,23:24]].to_numpy()    
-y_val = df_val.iloc[:, -1].to_numpy()
 
 
-# naive bayes classification (multinomial and complement)
-mnb = MultinomialNB()
-mnb.fit(X_train, y_train)
-predictions = mnb.predict(X_val)
-
-# cnb = ComplementNB()
-# cnb.fit(X_train, y_train)
-# predictions = cnb.predict(X_val)
 
 
-# visualisation
-df_val['prediction'] = predictions
-clsf_report = pd.DataFrame(classification_report(y_true = df_val['label'], y_pred = df_val['prediction'], output_dict=True)).transpose()
-print(clsf_report)
 
-confusion_matrix = pd.crosstab(df_val['label'], df_val['prediction'], rownames=['Actual'], colnames=['Predicted'])
-sn.heatmap(confusion_matrix, annot=True, cmap='Blues')
-plt.show()
+
+
+
 
 
 

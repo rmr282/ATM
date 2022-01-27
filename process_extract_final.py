@@ -28,8 +28,6 @@ nltk.download('words')
 
 # --- DEFINITIONS -------------------------------------------------------------------------------------
 
-DATA_DIR = os.path.join(os.getcwd(), 'SEM-2012-SharedTask-CD-SCO-simple.v2')
-
 english_vocab = set(w.lower() for w in nltk.corpus.words.words())
 nlp = spacy.load("en_core_web_sm")
 
@@ -196,7 +194,7 @@ def nlp_features(data):
     data["snowball_stemmer"] = data.apply(
         lambda row: snow.stem(row["token_lower"]), axis=1)
     port = PorterStemmer()
-    data['Porter_stemmer'] = data.apply(
+    data['porter_stemmer'] = data.apply(
         lambda row: port.stem(row["token_lower"]), axis=1)
 
     return data
@@ -357,9 +355,15 @@ def regex_features(data):
 
 def main():
 
+    DATA_DIR = os.path.join(os.getcwd(), 'SEM-2012-SharedTask-CD-SCO-simple.v2')
+
     data = pd.read_csv(os.path.join(
         DATA_DIR, 'SEM-2012-SharedTask-CD-SCO-training-simple.v2.txt'), sep="\t", header=None)
     data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']
+
+    print(data.head(10))
+
+
     # exploration(data)
     # get_statistics_ravi(data)
     preprocessed_data = preprocessing(data)
