@@ -25,13 +25,30 @@ df_train["has_infix"] = df_train["has_infix"].astype(int)
 df_train["base_in_dictionary"] = df_train["base_in_dictionary"].astype(int)
 df_train["has_apostrophe"] = df_train["has_apostrophe"].astype(int)
 
-# vectorize strings
-dict_vec = DictVectorizer()
-dict_vec.fit(df_train[['token_no_stop']].to_dict('records'))
-X_train = dict_vec.transform(df_train[['token_no_stop']].to_dict('records'))
-X_val = dict_vec.transform(df_val[['token_no_stop']].to_dict('records'))
+print(df_train.columns)
+print(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+                 'porter_stemmer','head','dependency']].isna().any())
 
-print(X_train)
+
+# vectorize strings
+dict_vec = DictVectorizer(sparse=False)
+
+# dict_vec.fit(df_train[['token_no_stop']].to_dict('records'))
+# X_train = dict_vec.transform(df_train[['token_no_stop']].to_dict('records'))
+# X_val = dict_vec.transform(df_val[['token_no_stop']].to_dict('records'))
+
+# 'token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+#                 'porter_stemmer','head','dependency','is_part_of_negation','has_prefix','has_postfix','has_infix',
+#                 'base_in_dictionary','has_apostrophe'
+
+dict_vec.fit(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+                 'porter_stemmer','head','dependency']].to_dict('records'))
+X_train = dict_vec.transform(df_train[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+                 'porter_stemmer','head','dependency']].to_dict('records'))
+X_val = dict_vec.transform(df_val[['token_no_stop','lemma','pos','prev_lemma','next_lemma','prev_pos','next_pos','snowball_stemmer',
+                 'porter_stemmer','head','dependency']].to_dict('records'))
+
+# print(X_train)
 
 
 # count_vec = CountVectorizer()

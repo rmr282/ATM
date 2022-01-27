@@ -1,4 +1,4 @@
-annotator,sentence_id,token_id,token,label,token_lower,token_no_punct,token_no_stop,lemma,pos,prev_lemma,next_lemma,prev_pos,next_pos,snowball_stemmer,Porter_stemmer,head,dependency,is_part_of_negation,has_prefix,has_postfix,has_infix,base,base_in_dictionary,has_apostrophe
+annotator,sentence_id,token_id,token,label,token_lower,token_no_punct,token_no_stop,lemma,pos,prev_lemma,next_lemma,prev_pos,next_pos,snowball_stemmer,porter_stemmer,head,dependency,is_part_of_negation,has_prefix,has_postfix,has_infix,base,base_in_dictionary,has_apostrophe
 wisteria01,0,0,1.,O,1.,1,1,1,X,,the,,DET,1.,1.,4,nummod,0,False,False,False,1.,False,False
 wisteria01,0,1,the,O,the,the,the,the,DET,1,singular,X,VERB,the,the,4,det,0,False,False,False,the,True,False
 wisteria01,0,2,singular,O,singular,singular,singular,singular,VERB,the,experience,DET,NOUN,singular,singular,4,amod,0,False,False,False,singular,True,False
