@@ -20,8 +20,10 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
 from spacy_conll import init_parser
 
+from sklearn.model_selection import train_test_split
+
 # TODO: uncomment when running for first time
-nltk.download('words')
+# nltk.download('words')
 
 # from stanza.pipeline.processor import ProcessorVariant, register_processor_variant
 
@@ -166,11 +168,14 @@ def preprocessing(data):
 
 def feature_extraction(data):
 
+    print('Extracting NLP features 1...')
     data = nlp_features(data)
-    data = nlp_features_2(data)
-
-    data
-
+    print('Extracting NLP features 2...')
+    # data = nlp_features_2(data)
+    print('Extracting multi-word negations...')
+    data['is_part_of_negation'] = 0
+    data = part_of_negation(data)  
+    print('Extracting regex features...')
     data = regex_features(data)
 
     return data
@@ -222,12 +227,12 @@ def nlp_features_2(data):
         sentence_ids = pd.unique(column_values)  # get the unique sentence ids
 
         for sent_id in sentence_ids:
-            sentence = annotator_data.loc[annotator_data['sentence_id']
-                                          == sent_id, 'token_no_stop']
+            sentence = annotator_data.loc[annotator_data['sentence_id'] == sent_id, 'token_no_stop']
 
-            doc = nlp(list(sentence))
-            doc._.pandas['head'] = doc._.pandas['head'].astype(
-                int)  # convert to int
+            sentence = " ".join(sentence.to_list())
+
+            doc = nlp(sentence) # nlp(list(sentence))
+            doc._.pandas['head'] = doc._.pandas['head'].astype(int)  # convert to int
             head = list(doc._.pandas['head'].values)  # get the heads
             dep_rel = list(doc._.pandas['deprel'].values)  # get the deprels
 
@@ -237,9 +242,7 @@ def nlp_features_2(data):
 
     data['head'] = heads
     data['dependency'] = dep_rels
-    data['is_part_of_negation'] = 0
-    data = part_of_negation(data)  # get features for part of negation
-
+    
     return data
 
 
@@ -355,36 +358,57 @@ def regex_features(data):
 
 def main():
 
-    DATA_DIR = os.path.join(os.getcwd(), 'SEM-2012-SharedTask-CD-SCO-simple.v2')
+    # DATA_DIR = os.path.join(os.getcwd(), 'SEM-2012-SharedTask-CD-SCO-simple.v2')
 
-    data = pd.read_csv(os.path.join(
-        DATA_DIR, 'SEM-2012-SharedTask-CD-SCO-training-simple.v2.txt'), sep="\t", header=None)
-    data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']
+    # data = pd.read_csv(os.path.join(DATA_DIR, 'SEM-2012-SharedTask-CD-SCO-training-simple.v2.txt'), sep="\t", header=None)
+    # data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']
+    # # exploration(data)
+    # # get_statistics_ravi(data)
+    # preprocessed_data = preprocessing(data)
+    # featurized_data = feature_extraction(preprocessed_data)
+    # data.to_csv('SEM2012_training_data_with_features.csv', index=False)
 
-    print(data.head(10))
+    # validation_data = pd.read_csv(os.path.join(DATA_DIR, 'SEM-2012-SharedTask-CD-SCO-dev-simple.v2.txt'), sep="\t", header=None)
+    # validation_data.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label']  
+    # validation_data = preprocessing(validation_data)
+    # validation_data = feature_extraction(validation_data)
+    # validation_data.to_csv('SEM2012_validation_data_with_features.csv', index=False)
+  
 
 
-    # exploration(data)
-    # get_statistics_ravi(data)
-    preprocessed_data = preprocessing(data)
-    featurized_data = feature_extraction(preprocessed_data)
-    data.to_csv('SEM2012_training_data_with_features.csv', index=False)
+    DATA_DIR_2 = os.path.join(os.getcwd(), 'bioscope-corpus\\bioscope-corpus')
+    print(DATA_DIR_2)
 
-    # print('\nPREPROCESSED DATAFRAME\n')
-    # print(preprocessed_data)
-    # print('\nFEATURIZED DATAFRAME\n')
-    # print(featurized_data)
-    # print(featurized_data.columns)
+    bio_abstract = pd.read_csv(os.path.join(DATA_DIR_2, 'bioscope.abstracts.columns.txt'), sep="\t", header=None)
+    bio_abstract.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label', 'label_2', 'label_3']
+    bio_abstract.drop(['label_2', 'label_3'], axis=1, inplace=True)
+    bio_abstract.replace('_', 'O', inplace=True)
 
-    validation_data = pd.read_csv(os.path.join(
-        DATA_DIR, 'SEM-2012-SharedTask-CD-SCO-dev-simple.v2.txt'), sep="\t", header=None)
-    validation_data.columns = ['annotator',
-                               'sentence_id', 'token_id', 'token', 'label']
-    # get_statistics_ravi(validation_data)
-    validation_data = preprocessing(validation_data)
-    validation_data = feature_extraction(validation_data)
-    validation_data.to_csv(
-        'SEM2012_validation_data_with_features.csv', index=False)
+    bio_clinical = pd.read_csv(os.path.join(DATA_DIR_2, 'bioscope.clinical.columns.txt'), sep="\t", header=None)
+    bio_clinical.columns = ['annotator', 'sentence_id', 'token_id', 'token', 'label', 'label_2', 'label_3']
+    bio_clinical.drop(['label_2', 'label_3'], axis=1, inplace=True)
+    bio_clinical.replace('_', 'O', inplace=True)
+    
+    # reading bio_papers gives following error:
+    # pandas.errors.ParserError: Error tokenizing data. C error: EOF inside string starting at row 17819
+    # bio_papers = pd.read_csv(os.path.join(DATA_DIR_2, 'bioscope.papers.columns.txt'), sep="\t", header=None)
+
+    bio_combined = pd.concat([bio_abstract, bio_clinical])
+    bio_combined["token"] = bio_combined["token"].astype(str)
+    bio_combined["label"] = bio_combined["label"].astype(str)
+    print(bio_combined.dtypes)
+
+    bio_preprocess = preprocessing(bio_combined)
+    bio_features = feature_extraction(bio_preprocess)
+
+    print(bio_features.head(20))
+
+    bio_train, bio_val = train_test_split(bio_features, test_size=0.2)
+
+    bio_train.to_csv('biocorpus_training_data_with_features.csv', index=False)
+    bio_val.to_csv('biocorpus_validation_data_with_features.csv', index=False)
+
+
 
 
 if __name__ == '__main__':
