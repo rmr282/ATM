@@ -15,7 +15,7 @@ The “saved” directories from the eHost annotation task were stored for every
 During this phase the preprocessing and feature extraction file was performed (run process_extract_final.py file). 
 
 **Assignment 4**
-To be announced.
+For assignment 4 the models were created. 
 
 **Assignment 5**
 To be announced. 
