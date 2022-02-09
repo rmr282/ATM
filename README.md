@@ -22,3 +22,12 @@ For assigment 5 we performed an error analysis to evaluate the models created du
 
 
 The data used for this experimentation can be found in the folder data. The code for each of the tasks described above is 
+
+
+We have also provided a requirements file that can be used to create an enviroment to test the code.
+
+# using pip
+pip install -r requirements.txt
+
+# using Conda
+conda create --name <env_name> --file requirements.txt
