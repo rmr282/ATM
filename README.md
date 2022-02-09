@@ -26,8 +26,8 @@ The data used for this experimentation can be found in the folder data. The code
 
 We have also provided a requirements file that can be used to create an enviroment to test the code.
 
-# using pip
+using pip:
 pip install -r requirements.txt
 
-# using Conda
+using Conda:
 conda create --name <env_name> --file requirements.txt
